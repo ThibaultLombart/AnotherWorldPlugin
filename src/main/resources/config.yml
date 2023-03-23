@@ -1,0 +1,36 @@
+prefix: "&#09fbd7[&#16fadaA&#22faddn&#2ff9e0o&#3bf9e3t&#48f8e6h&#55f7e9e&#61f7ebr&#6ef6eeW&#7bf5f1o&#87f5f4r&#94f4f7l&#a0f4fad&#adf3fd] "
+errors:
+  basic-error: "&#CCDBE4Vous ne pouvez pas effectuer cette commande, Veuillez suivre ce schéma : "
+  error-trade: "&#D75C42/trade <Joueur> ou <Accept/Deny>"
+  error-money: "&#D75C42/money <monnaie>"
+  error-pay: "&#D75C42/pay <monnaie> <joueur> <somme>"
+
+  error-trade-already: "&#f7ce25Ce joueur a déjà une demande ou est en trade"
+  error-trade-nothing: "&#D11200Erreur, aucune demande de trade"
+messages:
+  trade-send: "&#f7ce25Votre demande de trade a été envoyé"
+  trade-received: "&#f7ce25Une demande de trade vous a été envoyé par : "
+  trade-foraccept: "&#5EFF5EPour accepter, faites /trade accept"
+  trade-accept: "&#5EFF5EVous avez accepté le trade"
+  trade-accept2: "&#5EFF5ELe joueur a accepté le trade"
+  trade-refused: "&#D11200Vous refusez le trade"
+  trade-refused2: "&#D11200Le joueur a refusé votre trade"
+  trade-cancelled-connection: "&#D11200Erreur, la personne s'est deconnectée"
+  trade-on-me: "&#D11200Erreur, Vous ne pouvez pas vous demander un trade a vous même"
+
+welcome1: "&#5EFF5E Bienvenue a "
+welcome2: "&#5EFF5E Sur le serveur !"
+
+economy:
+  symbol-money: "$"
+  symbol-bmoney: "BCoins"
+  symbol-emoney: "ECoins"
+  money: "&#5EFF5E Voici votre solde : "
+  pay: "&#5EFF5E Vous avez envoyé &#FFFFFF"
+  pay-continue: " à "
+  pay-recieved: "&#5EFF5E Vous avez reçu &#FFFFFF"
+  pay-recieved-continue: " de "
+  pay-on-me: "&#D11200Erreur, Vous ne pouvez pas vous donner de l'argent a vous même"
+  pay-under-0: "&#D11200Erreur, Vous ne pouvez pas envoyer une somme négative."
+  pay-alphabet: "&#D11200Erreur, Vous ne pouvez pas utiliser l'alphabet pour un nombre"
+  pay-not-enough: "&#D11200Erreur, Vous n'avez pas assez d'argent"

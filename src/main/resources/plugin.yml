@@ -1,0 +1,22 @@
+name: AnotherWorldPlugin
+version: 1.0
+main: fr.thybax.anotherworldplugin.Main
+api-version: 1.19
+authors: [ Thybax ]
+description: Plugin pour AnotherWorld
+commands:
+
+  giveitem:
+    description: Give Custom Item.
+    permission: giveitem.use
+    permission-message: Vous n'avez pas la permission d'effectuer cette commande
+
+  trade:
+    description: Commande pour trade
+    permission: trade.use
+
+  money:
+    description: Permet de verifier son argent (/money <type>)
+
+  pay:
+    description: Permet d'envoyer de l'argent a quelqu'un (/pay <player> <type> <somme>)
