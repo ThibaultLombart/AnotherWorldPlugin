@@ -13,23 +13,25 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class CommandTrade implements CommandExecutor {
 
-    private static HashMap<UUID, String> hash = new HashMap<UUID, String>();
+    private static HashMap<UUID, String> hash = new HashMap<>();
 
     private static String prefix = Informations.getPrefix();
     private static String basicError = Informations.getBasicError();
 
-    public static HashMap<UUID, String> getHash(){
+    public static Map<UUID, String> getHash(){
         return hash;
     }
 
+
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String arg0, String[] args) {
-        if(sender instanceof Player){
-            Player player = (Player) sender;
+        if(sender instanceof Player player){
             if(args.length >= 1){
                 if(Bukkit.getPlayer(args[0]) != null){
                     Player player2 = Bukkit.getPlayer(args[0]);

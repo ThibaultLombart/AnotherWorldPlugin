@@ -39,6 +39,37 @@ public class Items {
         waterBucket.setItemMeta(waterBucketMeta);
 
         allItems.put("infinitewaterbucket",waterBucket);
+
+
+
+
+        ItemStack emptyBucket = new ItemStack(Material.BUCKET, 1);
+        ItemMeta emptyBucketMeta = emptyBucket.getItemMeta();
+
+        emptyBucketMeta.setDisplayName("§7Seau vide infini");
+        emptyBucketMeta.setLore(Arrays.asList("","§eDescription : ","§f Seau vide INFINI"));
+        emptyBucketMeta.setCustomModelData(2);
+        emptyBucketMeta.setLocalizedName("infiniteemptybucket");
+        emptyBucketMeta.addEnchant(Enchantment.ARROW_DAMAGE,1,false);
+        emptyBucketMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        emptyBucket.setItemMeta(emptyBucketMeta);
+
+        allItems.put("infiniteemptybucket",emptyBucket);
+
+
+
+        ItemStack cheque = new ItemStack(Material.PAPER, 1);
+        ItemMeta chequeMeta = cheque.getItemMeta();
+
+        chequeMeta.setDisplayName("§7Cheque");
+        chequeMeta.setLore(Arrays.asList("","§eDescription : ","§f Cheque d'argent"));
+        chequeMeta.setCustomModelData(3);
+        chequeMeta.setLocalizedName("cheque");
+        chequeMeta.addEnchant(Enchantment.ARROW_DAMAGE,1,false);
+        chequeMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        cheque.setItemMeta(chequeMeta);
+
+        allItems.put("cheque",cheque);
     }
 
     public static ItemStack getCustomItem(String name){

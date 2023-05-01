@@ -20,3 +20,24 @@ commands:
 
   pay:
     description: Permet d'envoyer de l'argent a quelqu'un (/pay <player> <type> <somme>)
+
+  cheque:
+    description: Permet de créer un cheque de n'importe quelle monnaie
+
+  giveeco:
+    description: /!\ Commande Admin /!\ Permet de give n'importe quelle monnaie
+    permission: giveeco.use
+    permission-message: Vous n'avez pas la permission d'effectuer cette commande
+
+  withdraweco:
+    description: /!\ Commande Admin /!\ Permet d'enlever une certaine somme
+    permission: withdraweco.use
+    permission-message: Vous n'avez pas la permission d'effectuer cette commande
+
+  anotherReload:
+    description: /!\ Commande Admin /!\ Permet de reload le configFile
+    permission: withdraweco.use
+    permission-message: Vous n'avez pas la permission d'effectuer cette commande
+
+  shop:
+    description: Permet d'ouvrir le /shop

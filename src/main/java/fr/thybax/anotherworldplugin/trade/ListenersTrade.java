@@ -12,7 +12,6 @@ import org.bukkit.event.inventory.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import java.util.ArrayList;
@@ -26,6 +25,8 @@ public class ListenersTrade implements Listener {
     ArrayList<Player> arrayPlayer = new ArrayList<>();
 
     ArrayList<Player> itsOk = new ArrayList<>();
+
+    String nameMenu = "§2Menu de Trade";
 
 
     @EventHandler
@@ -54,7 +55,6 @@ public class ListenersTrade implements Listener {
         Inventory inv = event.getInventory();
         Inventory invClicked = event.getClickedInventory();
         Player playerTest1 = (Player) event.getWhoClicked();
-        HashMap<UUID, String> hash = CommandTrade.getHash();
 
         List<HumanEntity> test = event.getViewers();
         if(test.size() == 1){
@@ -68,8 +68,8 @@ public class ListenersTrade implements Listener {
 
             int[] player1L = {30,29,28,27,21,20,19,18,12,11,10,9,3,2,1,0};
             int[] player2L = {35,34,33,32,26,25,24,23,17,16,15,14,8,7,6,5};
-            ArrayList<Integer> player1List = new ArrayList<Integer>();
-            ArrayList<Integer> player2List = new ArrayList<Integer>();
+            ArrayList<Integer> player1List = new ArrayList<>();
+            ArrayList<Integer> player2List = new ArrayList<>();
 
             for(int i = 0;i < player1L.length; i++){
                 player1List.add(player1L[i]);
@@ -81,7 +81,7 @@ public class ListenersTrade implements Listener {
 
 
 
-            if(event.getView().getTitle().equalsIgnoreCase("§2Menu de Trade")){
+            if(event.getView().getTitle().equalsIgnoreCase(nameMenu)){
                 if(event.getClick() == ClickType.DOUBLE_CLICK || event.getClick() == ClickType.SHIFT_LEFT || event.getClick() == ClickType.SHIFT_RIGHT || event.getClick() == ClickType.CONTROL_DROP || event.getClick() == ClickType.UNKNOWN){
                     event.setResult(Event.Result.DENY);
                 }
@@ -260,7 +260,7 @@ public class ListenersTrade implements Listener {
 
     @EventHandler
     public void onDrag(InventoryDragEvent event){
-        if(event.getView().getTitle().equalsIgnoreCase("§2Menu de Trade")){
+        if(event.getView().getTitle().equalsIgnoreCase(nameMenu)){
             event.setCancelled(true);
         }
     }
@@ -275,7 +275,7 @@ public class ListenersTrade implements Listener {
         } else {
 
 
-            if (event.getView().getTitle().equalsIgnoreCase("§2Menu de Trade")) {
+            if (event.getView().getTitle().equalsIgnoreCase(nameMenu)) {
                 Player player1 = (Player) event.getViewers().get(1);
                 Player player2 = (Player) event.getViewers().get(0);
 

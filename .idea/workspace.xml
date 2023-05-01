@@ -4,35 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a32f6be-c9d0-439c-bf85-ee42a9ed52e0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/ChatHexa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/Informations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/ListenersJoin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/database/DatabaseManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/database/DbConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/database/DbCredentials.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/CommandEconomy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/DatabaseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/CommandItems.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/Items.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/ListenersItems.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/trade/CommandTrade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/trade/ListenersTrade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+    <list default="true" id="3a32f6be-c9d0-439c-bf85-ee42a9ed52e0" name="Changes" comment="Début du projet">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/Exceptions/SqlErrorException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/ListenersEco.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/shop/ListenersShop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/shop/Shop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/shop/ShopManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/tabcompletion/TabCompletionGiveItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/tabcompletion/TabCompletionMoney.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/tabcompletion/TabCompletionPay.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/utils/CommandAnotherWorld.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/Informations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/Informations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/ListenersJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/ListenersJoin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/database/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/database/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/database/DbConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/database/DbConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/CommandEconomy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/CommandEconomy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/DatabaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/DatabaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/CommandItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/CommandItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/Items.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/Items.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/ListenersItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/ListenersItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/trade/CommandTrade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/trade/CommandTrade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/trade/ListenersTrade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/trade/ListenersTrade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +81,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="e4e9468f-46e6-48ea-9ade-b8dbb8100a27" />
+        <option name="url" value="https://github.com/ThibaultLombart/AnotherWorldPlugin.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -98,18 +107,20 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/north/Documents/Java/TeaUtilities&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/north/Documents/Java/AnotherWorldPlugin&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="fr.thybax.anotherworldplugin.utils" />
       <recent name="fr.thybax.anotherworldplugin.economy" />
       <recent name="fr.thybax.anotherworldplugin" />
       <recent name="fr.thybax.anotherworldplugin.trade" />
       <recent name="fr.thybax.anotherworldplugin.items" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.AnotherWorldPlugin [build]">
+  <component name="RunManager" selected="Gradle.AnotherWorldPlugin [assemble]">
     <configuration name="AnotherWorldPlugin [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -162,8 +173,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.AnotherWorldPlugin [build]" />
         <item itemvalue="Gradle.AnotherWorldPlugin [assemble]" />
+        <item itemvalue="Gradle.AnotherWorldPlugin [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -176,7 +187,19 @@
       <option name="presentableId" value="Default" />
       <updated>1677791430446</updated>
     </task>
+    <task id="LOCAL-00001" summary="Début du projet">
+      <created>1679587826824</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1679587826824</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Début du projet" />
+    <option name="LAST_COMMIT_MESSAGE" value="Début du projet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

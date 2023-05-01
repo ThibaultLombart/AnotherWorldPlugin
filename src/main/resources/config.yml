@@ -4,6 +4,7 @@ errors:
   error-trade: "&#D75C42/trade <Joueur> ou <Accept/Deny>"
   error-money: "&#D75C42/money <monnaie>"
   error-pay: "&#D75C42/pay <monnaie> <joueur> <somme>"
+  error-cheque: "&#D75C42/cheque <monnaie> <somme>"
 
   error-trade-already: "&#f7ce25Ce joueur a déjà une demande ou est en trade"
   error-trade-nothing: "&#D11200Erreur, aucune demande de trade"
@@ -18,19 +19,33 @@ messages:
   trade-cancelled-connection: "&#D11200Erreur, la personne s'est deconnectée"
   trade-on-me: "&#D11200Erreur, Vous ne pouvez pas vous demander un trade a vous même"
 
-welcome1: "&#5EFF5E Bienvenue a "
-welcome2: "&#5EFF5E Sur le serveur !"
+welcome1: "&#5EFF5E Bienvenue a {0} sur le serveur !"
+
+database:
+  host: "localhost"
+  user: "anotherworlduser"
+  password: ")i08MyYR3ZI8whll"
+  dbName: "anotherworld"
+  port: 3306
+
+anotherReload: "Reload effectué"
 
 economy:
   symbol-money: "$"
-  symbol-bmoney: "BCoins"
-  symbol-emoney: "ECoins"
-  money: "&#5EFF5E Voici votre solde : "
-  pay: "&#5EFF5E Vous avez envoyé &#FFFFFF"
-  pay-continue: " à "
-  pay-recieved: "&#5EFF5E Vous avez reçu &#FFFFFF"
-  pay-recieved-continue: " de "
-  pay-on-me: "&#D11200Erreur, Vous ne pouvez pas vous donner de l'argent a vous même"
-  pay-under-0: "&#D11200Erreur, Vous ne pouvez pas envoyer une somme négative."
-  pay-alphabet: "&#D11200Erreur, Vous ne pouvez pas utiliser l'alphabet pour un nombre"
-  pay-not-enough: "&#D11200Erreur, Vous n'avez pas assez d'argent"
+  symbol-bmoney: "A-Coins"
+  symbol-emoney: "E-Coins"
+
+  money: "&#5EFF5E Voici votre solde : &#FFFFFF"
+
+  pay:
+    base: "&#5EFF5E Vous avez envoyé &#FFFFFF {0}{1}&#5EFF5E à {2}"
+    recieved: "&#5EFF5E Vous avez reçu &#FFFFFF {0}{1}&#5EFF5E de {2}"
+    on-me: "&#D11200Erreur, Vous ne pouvez pas vous donner de l'argent a vous même"
+    under-0: "&#D11200Erreur, Vous ne pouvez pas mettre de somme négative."
+    alphabet: "&#D11200Erreur, Vous ne pouvez pas utiliser l'alphabet pour un nombre"
+    not-enough: "&#D11200Erreur, Vous n'avez pas assez d'argent"
+    not-known-money: "&#D11200Erreur, Le nom de cette monnaie n'existe pas"
+
+  withdraw:
+    base: "&#5EFF5E Vous avez retiré &#FFFFFF {0}{1}&#5EFF5E à {2}"
+    recieved: "&#5EFF5E {0} vous a retiré &#FFFFFF {1}{2}&#5EFF5E"

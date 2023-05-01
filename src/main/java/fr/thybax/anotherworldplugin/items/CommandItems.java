@@ -25,6 +25,11 @@ public class CommandItems implements CommandExecutor {
                         player.getInventory().addItem(infiniteWaterBucket);
                         player.updateInventory();
                     }
+                    if(args[0].equalsIgnoreCase("infiniteemptybucket")){
+                        ItemStack infiniteEmptyBucket = Items.getCustomItem("infiniteemptybucket");
+                        player.getInventory().addItem(infiniteEmptyBucket);
+                        player.updateInventory();
+                    }
                 }
             }
 
