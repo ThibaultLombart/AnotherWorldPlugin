@@ -66,7 +66,7 @@ public class ListenersEco implements Listener {
                                 String finalResultString = subs2[3];
 
                                 player.getInventory().remove(item);
-                                DatabaseController.ajouterArgent(player.getUniqueId(), finishResult, finalResultString);
+                                Informations.addMoney(player.getUniqueId(), finishResult, finalResultString);
 
                             } else {
                                 player.getInventory().removeItem(item);

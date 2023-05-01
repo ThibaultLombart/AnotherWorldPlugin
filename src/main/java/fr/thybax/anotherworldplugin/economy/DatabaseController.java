@@ -1,5 +1,6 @@
 package fr.thybax.anotherworldplugin.economy;
 
+import fr.thybax.anotherworldplugin.Exceptions.SqlErrorException;
 import fr.thybax.anotherworldplugin.Informations;
 import fr.thybax.anotherworldplugin.Main;
 import fr.thybax.anotherworldplugin.database.DbConnection;
@@ -10,7 +11,11 @@ import java.util.UUID;
 
 public class DatabaseController {
 
-    public static Main mainItself;
+    private static Main mainItself;
+
+    private DatabaseController(){
+        throw new IllegalStateException("Utility class");
+    }
 
     public static void init(Main main) {
         mainItself = main;
@@ -19,10 +24,9 @@ public class DatabaseController {
     public static int ajouterCheque(UUID uuid,String pseudo, String typeMonnaie, double somme){
         if (typeMonnaie.equalsIgnoreCase("MONEY") || typeMonnaie.equalsIgnoreCase("ANOTHERCOINS") || typeMonnaie.equalsIgnoreCase("EVENTCOINS")) {
             final DbConnection databaseManager = mainItself.getDatabaseManager().getDbConnection();
-            try{
-                Connection connection = databaseManager.getConnection();
+            try (Connection connection = databaseManager.getConnection();final PreparedStatement preparedStatement2 = connection.prepareStatement("INSERT INTO cheque(pseudo,uuid,type,somme,Created_at) VALUES (?,?,?,?,?)");final PreparedStatement preparedStatement = connection.prepareStatement("SELECT MAX(id) FROM cheque where Created_at = ?")){
+
                 final Timestamp time = new Timestamp(System.currentTimeMillis());
-                final PreparedStatement preparedStatement2 = connection.prepareStatement("INSERT INTO cheque(pseudo,uuid,type,somme,Created_at) VALUES (?,?,?,?,?)");
                 preparedStatement2.setString(1,pseudo);
                 preparedStatement2.setString(2,uuid.toString());
                 preparedStatement2.setString(3,typeMonnaie);
@@ -30,7 +34,6 @@ public class DatabaseController {
                 preparedStatement2.setTimestamp(5,time);
                 preparedStatement2.executeUpdate();
 
-                final PreparedStatement preparedStatement = connection.prepareStatement("SELECT MAX(id) FROM cheque where Created_at = ?");
                 preparedStatement.setTimestamp(1,time);
                 final ResultSet resultSet = preparedStatement.executeQuery();
                 int id = -1;
@@ -41,153 +44,29 @@ public class DatabaseController {
 
                 return id;
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new SqlErrorException("Add Cheque ERROR");
             }
         }
         return -1;
     }
 
-    public static Boolean retirerArgent(UUID uuid, double somme, String typeMonnaie){
-            if (typeMonnaie.equalsIgnoreCase("MONEY") || typeMonnaie.equalsIgnoreCase("ANOTHERCOINS") || typeMonnaie.equalsIgnoreCase("EVENTCOINS")) {
-                final DbConnection databaseManager = mainItself.getDatabaseManager().getDbConnection();
-                try {
-                    Connection connection = databaseManager.getConnection();
-                    if (typeMonnaie.equalsIgnoreCase("MONEY")) {
-                        final PreparedStatement preparedStatement = connection.prepareStatement("SELECT MONEY FROM player WHERE UUID = ?");
-                        preparedStatement.setString(1, uuid.toString());
-                        final ResultSet resultSet = preparedStatement.executeQuery();
-                        if (resultSet.next()) {
-                            somme = resultSet.getDouble(typeMonnaie) - somme;
+    public static void savePlayer(UUID uuid){
+        double money = Informations.getPlayerMoney().get(uuid);
+        double bMoney = Informations.getPlayerBMoney().get(uuid);
+        double eMoney = Informations.getPlayerEMoney().get(uuid);
+        final DbConnection databaseManager = mainItself.getDatabaseManager().getDbConnection();
+        try (Connection connection = databaseManager.getConnection();final PreparedStatement preparedStatement = connection.prepareStatement("UPDATE player SET money = ?, ANOTHERCOINS = ?, EVENTCOINS = ? where UUID = ?")){
 
+            preparedStatement.setDouble(1,money);
+            preparedStatement.setDouble(2,bMoney);
+            preparedStatement.setDouble(3,eMoney);
+            preparedStatement.setString(4,uuid.toString());
 
-                            final PreparedStatement preparedStatement2 = connection.prepareStatement("UPDATE player SET MONEY=? WHERE UUID = ?");
-                            preparedStatement2.setDouble(1, somme);
-                            preparedStatement2.setString(2, uuid.toString());
-                            preparedStatement2.executeUpdate();
-
-                            Informations.getPlayerMoney().put(uuid, somme);
-                        }
-
-
-                    } else if (typeMonnaie.equalsIgnoreCase("ANOTHERCOINS")) {
-                        final PreparedStatement preparedStatement = connection.prepareStatement("SELECT ANOTHERCOINS FROM player WHERE UUID = ?");
-                        preparedStatement.setString(1, uuid.toString());
-                        final ResultSet resultSet = preparedStatement.executeQuery();
-                        if (resultSet.next()) {
-                            somme = resultSet.getDouble(typeMonnaie) - somme;
-
-
-                            final PreparedStatement preparedStatement2 = connection.prepareStatement("UPDATE player SET ANOTHERCOINS=? WHERE UUID = ?");
-                            preparedStatement2.setDouble(1, somme);
-                            preparedStatement2.setString(2, uuid.toString());
-                            preparedStatement2.executeUpdate();
-
-                            Informations.getPlayerBMoney().put(uuid, somme);
-                        }
-
-
-                    } else {
-                        final PreparedStatement preparedStatement = connection.prepareStatement("SELECT EVENTCOINS FROM player WHERE UUID = ?");
-                        preparedStatement.setString(1, uuid.toString());
-
-                        final ResultSet resultSet = preparedStatement.executeQuery();
-                        if (resultSet.next()) {
-                            somme = resultSet.getDouble(typeMonnaie) - somme;
-
-
-                            final PreparedStatement preparedStatement2 = connection.prepareStatement("UPDATE player SET EVENTCOINS=? WHERE UUID = ?");
-                            preparedStatement2.setDouble(1, somme);
-                            preparedStatement2.setString(2, uuid.toString());
-                            preparedStatement2.executeUpdate();
-
-                            Informations.getPlayerEMoney().put(uuid, somme);
-                        }
-                    }
-
-
-                    databaseManager.close();
-
-
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                return false;
-            }
-
-            return true;
-    }
-
-    public static Boolean ajouterArgent(UUID uuid, double somme, String typeMonnaie) {
-
-        if (typeMonnaie.equalsIgnoreCase("MONEY") || typeMonnaie.equalsIgnoreCase("ANOTHERCOINS") || typeMonnaie.equalsIgnoreCase("EVENTCOINS")) {
-            final DbConnection databaseManager = mainItself.getDatabaseManager().getDbConnection();
-            try {
-                Connection connection = databaseManager.getConnection();
-                if (typeMonnaie.equalsIgnoreCase("MONEY")) {
-                    final PreparedStatement preparedStatement = connection.prepareStatement("SELECT MONEY FROM player WHERE UUID = ?");
-                    preparedStatement.setString(1, uuid.toString());
-                    final ResultSet resultSet = preparedStatement.executeQuery();
-                    if (resultSet.next()) {
-                        somme += resultSet.getDouble(typeMonnaie);
-
-
-                        final PreparedStatement preparedStatement2 = connection.prepareStatement("UPDATE player SET MONEY=? WHERE UUID = ?");
-                        preparedStatement2.setDouble(1, somme);
-                        preparedStatement2.setString(2, uuid.toString());
-                        preparedStatement2.executeUpdate();
-
-                        Informations.getPlayerMoney().put(uuid, somme);
-                    }
-
-
-                } else if (typeMonnaie.equalsIgnoreCase("ANOTHERCOINS")) {
-                    final PreparedStatement preparedStatement = connection.prepareStatement("SELECT ANOTHERCOINS FROM player WHERE UUID = ?");
-                    preparedStatement.setString(1, uuid.toString());
-                    final ResultSet resultSet = preparedStatement.executeQuery();
-                    if (resultSet.next()) {
-                        somme += resultSet.getDouble(typeMonnaie);
-
-
-                        final PreparedStatement preparedStatement2 = connection.prepareStatement("UPDATE player SET ANOTHERCOINS=? WHERE UUID = ?");
-                        preparedStatement2.setDouble(1, somme);
-                        preparedStatement2.setString(2, uuid.toString());
-                        preparedStatement2.executeUpdate();
-
-                        Informations.getPlayerBMoney().put(uuid, somme);
-                    }
-
-
-                } else {
-                    final PreparedStatement preparedStatement = connection.prepareStatement("SELECT EVENTCOINS FROM player WHERE UUID = ?");
-                    preparedStatement.setString(1, uuid.toString());
-
-                    final ResultSet resultSet = preparedStatement.executeQuery();
-                    if (resultSet.next()) {
-                        somme += resultSet.getDouble(typeMonnaie);
-
-
-                        final PreparedStatement preparedStatement2 = connection.prepareStatement("UPDATE player SET EVENTCOINS=? WHERE UUID = ?");
-                        preparedStatement2.setDouble(1, somme);
-                        preparedStatement2.setString(2, uuid.toString());
-                        preparedStatement2.executeUpdate();
-
-                        Informations.getPlayerEMoney().put(uuid, somme);
-                    }
-                }
-
-
-                databaseManager.close();
-
-
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
-            return false;
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new SqlErrorException("save "+uuid.toString()+" ERROR");
         }
-
-        return true;
     }
+
 
 }

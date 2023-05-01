@@ -2,6 +2,7 @@ package fr.thybax.anotherworldplugin;
 
 import fr.thybax.anotherworldplugin.Exceptions.SqlErrorException;
 import fr.thybax.anotherworldplugin.database.DbConnection;
+import fr.thybax.anotherworldplugin.economy.DatabaseController;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -132,5 +133,54 @@ public class Informations {
         });
     }
 
+
+    public static boolean addMoney(UUID uuid, double somme, String typeMoney){
+        if (typeMoney.equalsIgnoreCase("MONEY") || typeMoney.equalsIgnoreCase("ANOTHERCOINS") || typeMoney.equalsIgnoreCase("EVENTCOINS")) {
+            if(typeMoney.equalsIgnoreCase("MONEY")){
+                double money = playerMoney.get(uuid);
+                playerMoney.put(uuid,money+somme);
+            } else if (typeMoney.equalsIgnoreCase("ANOTHERCOINS")){
+                double money = playerBMoney.get(uuid);
+                playerBMoney.put(uuid,money+somme);
+            } else if (typeMoney.equalsIgnoreCase("EVENTCOINS")){
+                double money = playerEMoney.get(uuid);
+                playerEMoney.put(uuid,money+somme);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean removeMoney(UUID uuid, double somme, String typeMoney){
+        if (typeMoney.equalsIgnoreCase("MONEY") || typeMoney.equalsIgnoreCase("ANOTHERCOINS") || typeMoney.equalsIgnoreCase("EVENTCOINS")) {
+            if(typeMoney.equalsIgnoreCase("MONEY")){
+                double money = playerMoney.get(uuid);
+                playerMoney.put(uuid,money-somme);
+            } else if (typeMoney.equalsIgnoreCase("ANOTHERCOINS")){
+                double money = playerBMoney.get(uuid);
+                playerBMoney.put(uuid,money-somme);
+            } else if (typeMoney.equalsIgnoreCase("EVENTCOINS")){
+                double money = playerEMoney.get(uuid);
+                playerEMoney.put(uuid,money-somme);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+
+    public static void saveAll(){
+        Player[] players = new Player[Bukkit.getServer().getOnlinePlayers().size()];
+        Bukkit.getServer().getOnlinePlayers().toArray(players);
+        for(int i = 0; i < players.length; i++){
+            DatabaseController.savePlayer(players[i].getUniqueId());
+        }
+    }
 
 }

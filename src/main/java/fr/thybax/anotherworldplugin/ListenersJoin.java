@@ -33,14 +33,12 @@ public class ListenersJoin implements Listener {
 
             final DbConnection databaseManager = main.getDatabaseManager().getDbConnection();
             Bukkit.getScheduler().runTaskAsynchronously(main,()-> {
-                try {
-                    final Connection connection = databaseManager.getConnection();
-                    final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM player WHERE UUID = ?");
+                try (final Connection connection = databaseManager.getConnection();final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM player WHERE UUID = ?")){
+
+
 
                     preparedStatement.setString(1,uuid.toString());
                     final ResultSet resultSet = preparedStatement.executeQuery();
-
-                    connection.close();
 
 
                     // Traitement du résultat.

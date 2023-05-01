@@ -58,6 +58,7 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ListenersTrade(), this);
         getServer().getPluginManager().registerEvents(new ListenersShop(), this);
         getServer().getPluginManager().registerEvents(new ListenersJoin(this), this);
+        getServer().getPluginManager().registerEvents(new ListenersLeave(), this);
         getServer().getPluginManager().registerEvents(new ListenersEco(this), this);
         // Plugin startup logic
         databaseManager = new DatabaseManager();
@@ -74,8 +75,9 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        Informations.saveAll();
+
         this.databaseManager.close();
-        // Plugin shutdown logic
     }
 
 }
