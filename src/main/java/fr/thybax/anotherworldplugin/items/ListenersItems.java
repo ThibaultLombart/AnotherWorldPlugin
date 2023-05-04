@@ -26,7 +26,7 @@ public class ListenersItems implements Listener {
 
         if(!item.hasItemMeta()) return;
 
-        if(Items.equalsLocalizedName(item,Items.getCustomItem("infinitewaterbucket"))){
+        if(Boolean.TRUE.equals(Items.equalsLocalizedName(item,Items.getCustomItem("infinitewaterbucket")))){
             event.setCancelled(true);
             if(b.getBlockData() instanceof Waterlogged wl) {
                 wl.setWaterlogged(true);
@@ -34,7 +34,7 @@ public class ListenersItems implements Listener {
             } else {
                 player.getWorld().getBlockAt(x, y, z).setType(Material.WATER);
             }
-        } else if (Items.equalsLocalizedName(item,Items.getCustomItem("infinitelavabucket"))){
+        } else if (Boolean.TRUE.equals(Items.equalsLocalizedName(item,Items.getCustomItem("infinitelavabucket")))){
             event.setCancelled(true);
             player.getWorld().getBlockAt(x, y, z).setType(Material.LAVA);
         }
@@ -55,7 +55,7 @@ public class ListenersItems implements Listener {
 
         if(!item.hasItemMeta()) return;
 
-        if(Items.equalsLocalizedName(item,Items.getCustomItem("infiniteemptybucket"))){
+        if(Boolean.TRUE.equals(Items.equalsLocalizedName(item,Items.getCustomItem("infiniteemptybucket")))){
             event.setCancelled(true);
             if(b.getBlockData() instanceof Waterlogged wl) {
                 wl.setWaterlogged(false);

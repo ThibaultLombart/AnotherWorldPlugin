@@ -11,14 +11,20 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class Items {
-    public static HashMap<String, ItemStack> allItems = new HashMap<String,ItemStack>();
+
+    private Items() {
+        throw new IllegalStateException("Utility class");
+    }
+    protected static HashMap<String, ItemStack> allItems = new HashMap<>();
+
+    private static String description = "§eDescription : ";
 
     public static void init(){
         ItemStack lavaBucket = new ItemStack(Material.LAVA_BUCKET, 1);
         ItemMeta lavaBucketMeta = lavaBucket.getItemMeta();
 
         lavaBucketMeta.setDisplayName("§7Seau de Lave infini");
-        lavaBucketMeta.setLore(Arrays.asList("","§eDescription : ","§f Seau de lave INFINI"));
+        lavaBucketMeta.setLore(Arrays.asList("",description,"§f Seau de lave INFINI"));
         lavaBucketMeta.setCustomModelData(1);
         lavaBucketMeta.setLocalizedName("infinitelavabucket");
         lavaBucketMeta.addEnchant(Enchantment.ARROW_DAMAGE,1,false);
@@ -31,7 +37,7 @@ public class Items {
         ItemMeta waterBucketMeta = waterBucket.getItemMeta();
 
         waterBucketMeta.setDisplayName("§7Seau d'Eau infini");
-        waterBucketMeta.setLore(Arrays.asList("","§eDescription : ","§f Seau d'Eau INFINI"));
+        waterBucketMeta.setLore(Arrays.asList("",description,"§f Seau d'Eau INFINI"));
         waterBucketMeta.setCustomModelData(2);
         waterBucketMeta.setLocalizedName("infinitewaterbucket");
         waterBucketMeta.addEnchant(Enchantment.ARROW_DAMAGE,1,false);
@@ -47,7 +53,7 @@ public class Items {
         ItemMeta emptyBucketMeta = emptyBucket.getItemMeta();
 
         emptyBucketMeta.setDisplayName("§7Seau vide infini");
-        emptyBucketMeta.setLore(Arrays.asList("","§eDescription : ","§f Seau vide INFINI"));
+        emptyBucketMeta.setLore(Arrays.asList("",description,"§f Seau vide INFINI"));
         emptyBucketMeta.setCustomModelData(2);
         emptyBucketMeta.setLocalizedName("infiniteemptybucket");
         emptyBucketMeta.addEnchant(Enchantment.ARROW_DAMAGE,1,false);
@@ -62,7 +68,7 @@ public class Items {
         ItemMeta chequeMeta = cheque.getItemMeta();
 
         chequeMeta.setDisplayName("§7Cheque");
-        chequeMeta.setLore(Arrays.asList("","§eDescription : ","§f Cheque d'argent"));
+        chequeMeta.setLore(Arrays.asList("",description,"§f Cheque d'argent"));
         chequeMeta.setCustomModelData(3);
         chequeMeta.setLocalizedName("cheque");
         chequeMeta.addEnchant(Enchantment.ARROW_DAMAGE,1,false);
@@ -81,12 +87,10 @@ public class Items {
     }
 
     public static @Nullable String getLocalizedName(@Nullable ItemStack itemstack) {
-        if(itemstack != null){
-            if(itemstack.hasItemMeta()){
-                ItemMeta result = itemstack.getItemMeta();
-                if(result.hasLocalizedName()){
-                    return result.getLocalizedName();
-                }
+        if(itemstack != null && itemstack.hasItemMeta()){
+            ItemMeta result = itemstack.getItemMeta();
+            if(result.hasLocalizedName()){
+                return result.getLocalizedName();
             }
         }
         return null;

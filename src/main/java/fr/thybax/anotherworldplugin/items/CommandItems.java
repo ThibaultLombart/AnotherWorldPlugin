@@ -8,10 +8,8 @@ import org.bukkit.inventory.ItemStack;
 
 public class CommandItems implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
-        if(sender instanceof Player) {
-            Player player = (Player)sender;
+        if(sender instanceof Player player && cmd.getName().equalsIgnoreCase("giveitem")) {
 
-            if(cmd.getName().equalsIgnoreCase("giveitem")) {
                 if(args.length != 1) {
                     player.sendMessage("Soit t'as rien mis, soit t'as trop mis");
                 } else{
@@ -33,7 +31,6 @@ public class CommandItems implements CommandExecutor {
                 }
             }
 
-        }
         return false;
     }
 }

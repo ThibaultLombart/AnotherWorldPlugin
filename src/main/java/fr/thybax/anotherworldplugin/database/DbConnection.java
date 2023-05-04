@@ -1,9 +1,10 @@
 package fr.thybax.anotherworldplugin.database;
 
+import fr.thybax.anotherworldplugin.Exceptions.SqlErrorException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Logger;
 
 public class DbConnection {
 
@@ -20,23 +21,19 @@ public class DbConnection {
             Class.forName("com.mysql.jdbc.Driver");
             this.connection = DriverManager.getConnection(this.dbCredentials.toURI(),this.dbCredentials.getUser(), this.dbCredentials.getPass());
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new SqlErrorException(e.toString());
         }
     }
 
     public void close() throws SQLException {
-        if(this.connection != null){
-            if(!this.connection.isClosed()){
-                this.connection.close();
-            }
+        if(this.connection != null && !this.connection.isClosed()){
+            this.connection.close();
         }
     }
 
     public Connection getConnection() throws SQLException {
-        if(this.connection != null){
-            if(!this.connection.isClosed()){
-                return this.connection;
-            }
+        if(this.connection != null && !this.connection.isClosed()){
+            return this.connection;
         }
         connect();
         return this.connection;

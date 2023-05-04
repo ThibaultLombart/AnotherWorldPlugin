@@ -10,11 +10,17 @@ import java.util.Arrays;
 
 public class ShopManager {
 
+    private ShopManager() {
+        throw new IllegalStateException("Utility class");
+    }
+
     private static Inventory shopMenu;
 
     public static void init(){
         createShopMenu();
     }
+
+    private static String accederShop = "§aPour acceder au Shop :";
 
     public static void createShopMenu(){
         //Création inventaire
@@ -30,21 +36,21 @@ public class ShopManager {
         ItemStack sword = new ItemStack(Material.DIAMOND_SWORD,1);
         ItemMeta customSword = sword.getItemMeta();
         customSword.setDisplayName("§eItems Customs");
-        customSword.setLore(Arrays.asList("","§aPour acceder au Shop :","§fCliquez"));
+        customSword.setLore(Arrays.asList("",accederShop,"§fItems Customs"));
         sword.setItemMeta(customSword);
 
         //Creation bouton "Blocs"
         ItemStack bloc = new ItemStack(Material.GRASS_BLOCK,1);
         ItemMeta customBloc = bloc.getItemMeta();
         customBloc.setDisplayName("§eBlocs");
-        customBloc.setLore(Arrays.asList("","§aPour acceder au Shop :","§fCliquez"));
+        customBloc.setLore(Arrays.asList("",accederShop,"§fBlocs"));
         bloc.setItemMeta(customBloc);
 
         //Creation bouton "Farm"
         ItemStack farm = new ItemStack(Material.CACTUS,1);
         ItemMeta customFarm = farm.getItemMeta();
-        customFarm.setDisplayName("§eBlocs");
-        customFarm.setLore(Arrays.asList("","§aPour acceder au Shop :","§fCliquez"));
+        customFarm.setDisplayName("§eFarm");
+        customFarm.setLore(Arrays.asList("",accederShop,"§fFarm"));
         farm.setItemMeta(customFarm);
 
         // Ici on va faire plusieurs boucles permettant de mettre les grey glass pane

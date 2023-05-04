@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a32f6be-c9d0-439c-bf85-ee42a9ed52e0" name="Changes" comment="-Correction de bugs&#10;-Ajout du Début du Shop&#10;-Optimisation des programmes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/ListenersLeave.java" afterDir="false" />
+    <list default="true" id="3a32f6be-c9d0-439c-bf85-ee42a9ed52e0" name="Changes" comment="-Optimisation relation Plugin/Base de donnée">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/Informations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/Informations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/ListenersJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/ListenersJoin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/ListenersLeave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/ListenersLeave.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/database/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/database/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/database/DbConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/database/DbConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/CommandEconomy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/CommandEconomy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/DatabaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/DatabaseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/ListenersEco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/ListenersEco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/CommandItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/CommandItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/Items.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/Items.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/ListenersItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/items/ListenersItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/shop/ShopManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/shop/ShopManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/trade/ListenersTrade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/trade/ListenersTrade.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,15 +92,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "last_opened_file_path": "C:/Users/north/Documents/Java/AnotherWorldPlugin",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/north/Documents/Java/AnotherWorldPlugin&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="fr.thybax.anotherworldplugin" />
@@ -186,13 +191,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682953176705</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="-Optimisation relation Plugin/Base de donnée">
+      <created>1682958485101</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682958485101</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Début du projet" />
     <MESSAGE value="-Correction de bugs&#10;-Ajout du Début du Shop&#10;-Optimisation des programmes" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Correction de bugs&#10;-Ajout du Début du Shop&#10;-Optimisation des programmes" />
+    <MESSAGE value="-Optimisation relation Plugin/Base de donnée" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Optimisation relation Plugin/Base de donnée" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

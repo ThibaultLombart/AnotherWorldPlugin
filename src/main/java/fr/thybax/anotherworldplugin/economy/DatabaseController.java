@@ -4,7 +4,6 @@ import fr.thybax.anotherworldplugin.Exceptions.SqlErrorException;
 import fr.thybax.anotherworldplugin.Informations;
 import fr.thybax.anotherworldplugin.Main;
 import fr.thybax.anotherworldplugin.database.DbConnection;
-import org.bukkit.Bukkit;
 
 import java.sql.*;
 import java.util.UUID;

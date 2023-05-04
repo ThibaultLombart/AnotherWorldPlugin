@@ -57,9 +57,7 @@ public class ListenersTrade implements Listener {
         Player playerTest1 = (Player) event.getWhoClicked();
 
         List<HumanEntity> test = event.getViewers();
-        if(test.size() == 1){
-            return;
-        } else {
+        if(test.size() != 1){
 
             Player player1 = (Player) test.get(1);
             Player player2 = (Player) test.get(0);
@@ -270,12 +268,7 @@ public class ListenersTrade implements Listener {
         Inventory inv = event.getInventory();
         Player quitPlayer = (Player) event.getPlayer();
 
-        if(arrayPlayer.contains(quitPlayer)){
-            return;
-        } else {
-
-
-            if (event.getView().getTitle().equalsIgnoreCase(nameMenu)) {
+        if(!arrayPlayer.contains(quitPlayer) && event.getView().getTitle().equalsIgnoreCase(nameMenu)){
                 Player player1 = (Player) event.getViewers().get(1);
                 Player player2 = (Player) event.getViewers().get(0);
 
@@ -311,7 +304,6 @@ public class ListenersTrade implements Listener {
                     arrayPlayer.remove(player1);
                     arrayPlayer.remove(player2);
                 }, 1L);
-            }
         }
     }
 }

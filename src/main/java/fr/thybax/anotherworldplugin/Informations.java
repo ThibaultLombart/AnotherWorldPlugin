@@ -23,6 +23,12 @@ public class Informations {
     private static HashMap<UUID, Double> playerBMoney;
     private static HashMap<UUID, Double> playerEMoney;
 
+    private static String moneyName = "MONEY";
+    private static String anotherCoinsName = "ANOTHERCOINS";
+    private static String eventCoinsName = "EVENTCOINS";
+
+
+    // ------------------------------------------------------- CONFIGURATIONS ------------------------------------------------------- \\
     private Informations() {
         throw new IllegalStateException("Utility class");
     }
@@ -43,6 +49,8 @@ public class Informations {
         main = mainRequest;
         initPlayersOnline();
     }
+
+    // ------------------------------------------------------- Informations to Get ------------------------------------------------------- \\
 
     public static String getError(String message){
         return fileConfig.getString(message);
@@ -91,6 +99,8 @@ public class Informations {
         return playerEMoney;
     }
 
+
+    // ------------------------------------------------------- Utils ------------------------------------------------------- \\
     public static boolean isDouble(String str) {
         try {
             Double.parseDouble(str);
@@ -117,9 +127,9 @@ public class Informations {
                     // Traitement du résultat.
                     if (resultSet.next()) {
 
-                        final double money = resultSet.getDouble("MONEY");
-                        final double aMoney = resultSet.getDouble("ANOTHERCOINS");
-                        final double eMoney = resultSet.getDouble("EVENTCOINS");
+                        final double money = resultSet.getDouble(moneyName);
+                        final double aMoney = resultSet.getDouble(anotherCoinsName);
+                        final double eMoney = resultSet.getDouble(eventCoinsName);
 
                         Informations.getPlayerMoney().put(uuid, money);
                         Informations.getPlayerBMoney().put(uuid, aMoney);
@@ -128,21 +138,21 @@ public class Informations {
                 }
 
             } catch (Exception e) {
-                new SqlErrorException("SELECT * FROM player WHERE UUID = ?     Informations");
+                throw new SqlErrorException("SELECT * FROM player WHERE UUID = ?     Informations");
             }
         });
     }
 
 
     public static boolean addMoney(UUID uuid, double somme, String typeMoney){
-        if (typeMoney.equalsIgnoreCase("MONEY") || typeMoney.equalsIgnoreCase("ANOTHERCOINS") || typeMoney.equalsIgnoreCase("EVENTCOINS")) {
-            if(typeMoney.equalsIgnoreCase("MONEY")){
+        if (typeMoney.equalsIgnoreCase(moneyName) || typeMoney.equalsIgnoreCase(anotherCoinsName) || typeMoney.equalsIgnoreCase(eventCoinsName)) {
+            if(typeMoney.equalsIgnoreCase(moneyName)){
                 double money = playerMoney.get(uuid);
                 playerMoney.put(uuid,money+somme);
-            } else if (typeMoney.equalsIgnoreCase("ANOTHERCOINS")){
+            } else if (typeMoney.equalsIgnoreCase(anotherCoinsName)){
                 double money = playerBMoney.get(uuid);
                 playerBMoney.put(uuid,money+somme);
-            } else if (typeMoney.equalsIgnoreCase("EVENTCOINS")){
+            } else if (typeMoney.equalsIgnoreCase(eventCoinsName)){
                 double money = playerEMoney.get(uuid);
                 playerEMoney.put(uuid,money+somme);
             } else {
@@ -155,14 +165,14 @@ public class Informations {
     }
 
     public static boolean removeMoney(UUID uuid, double somme, String typeMoney){
-        if (typeMoney.equalsIgnoreCase("MONEY") || typeMoney.equalsIgnoreCase("ANOTHERCOINS") || typeMoney.equalsIgnoreCase("EVENTCOINS")) {
-            if(typeMoney.equalsIgnoreCase("MONEY")){
+        if (typeMoney.equalsIgnoreCase(moneyName) || typeMoney.equalsIgnoreCase(anotherCoinsName) || typeMoney.equalsIgnoreCase(eventCoinsName)) {
+            if(typeMoney.equalsIgnoreCase(moneyName)){
                 double money = playerMoney.get(uuid);
                 playerMoney.put(uuid,money-somme);
-            } else if (typeMoney.equalsIgnoreCase("ANOTHERCOINS")){
+            } else if (typeMoney.equalsIgnoreCase(anotherCoinsName)){
                 double money = playerBMoney.get(uuid);
                 playerBMoney.put(uuid,money-somme);
-            } else if (typeMoney.equalsIgnoreCase("EVENTCOINS")){
+            } else if (typeMoney.equalsIgnoreCase(eventCoinsName)){
                 double money = playerEMoney.get(uuid);
                 playerEMoney.put(uuid,money-somme);
             } else {

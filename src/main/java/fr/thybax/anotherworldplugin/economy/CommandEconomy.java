@@ -1,9 +1,9 @@
 package fr.thybax.anotherworldplugin.economy;
 
 import fr.thybax.anotherworldplugin.ChatHexa;
+import fr.thybax.anotherworldplugin.Exceptions.SqlErrorException;
 import fr.thybax.anotherworldplugin.Informations;
 import fr.thybax.anotherworldplugin.items.Items;
-import net.minecraft.world.level.block.InfestedRotatedPillarBlock;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.lang.reflect.Array;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
@@ -33,23 +32,35 @@ public class CommandEconomy implements CommandExecutor {
     private static String symbolEMoney = Informations.getError("economy.symbol-emoney");
 
 
+    private static String anotherCoinsName = "ANOTHERCOINS";
+    private static String moneyName = "MONEY";
+    private static String eventCoinsName = "EVENTCOINS";
+
+
+
+    private static String notKnownMoney = Informations.getError("economy.pay.not-known-money");
+    private static String under0 = Informations.getError("economy.pay.under-0");
+    private static String alphabet = Informations.getError("economy.pay.alphabet");
+    private static String notEnough = Informations.getError("economy.pay.not-enough");
+
+
     public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
         if (sender instanceof Player player) {
             UUID uuid = player.getUniqueId();
 
 
             // ----------------------------------- MONEY ----------------------------------- \\
-            if (cmd.getName().equalsIgnoreCase("money")) {
+            if (cmd.getName().equalsIgnoreCase(moneyName)) {
                 if (args.length == 0) {
                     player.sendMessage(ChatHexa.translateColorCodes(prefix + errorMoney + Informations.getPlayerMoney().get(uuid) + symbolMoney));
                 } else if (args.length != 1) {
                     player.sendMessage(ChatHexa.translateColorCodes(prefix + basicError + Informations.getError("errors.error-money")));
                 } else {
-                    if (args[0].equalsIgnoreCase("money")) {
+                    if (args[0].equalsIgnoreCase(moneyName)) {
                         player.sendMessage(ChatHexa.translateColorCodes(prefix + errorMoney + Informations.getPlayerMoney().get(uuid) + symbolMoney));
-                    } else if (args[0].equalsIgnoreCase("ANOTHERCOINS")) {
+                    } else if (args[0].equalsIgnoreCase(anotherCoinsName)) {
                         player.sendMessage(ChatHexa.translateColorCodes(prefix + errorMoney + Informations.getPlayerBMoney().get(uuid) + symbolBMoney));
-                    } else if (args[0].equalsIgnoreCase("eventcoins")) {
+                    } else if (args[0].equalsIgnoreCase(eventCoinsName)) {
                         player.sendMessage(ChatHexa.translateColorCodes(prefix + errorMoney + Informations.getPlayerEMoney().get(uuid) + symbolEMoney));
                     } else {
                         player.sendMessage(ChatHexa.translateColorCodes(prefix + basicError + Informations.getError("errors.error-money")));
@@ -77,10 +88,10 @@ public class CommandEconomy implements CommandExecutor {
 
 
                                 } else {
-                                    player.sendMessage(ChatHexa.translateColorCodes(prefix + Informations.getError("economy.pay.under-0")));
+                                    player.sendMessage(ChatHexa.translateColorCodes(prefix + under0));
                                 }
                             } else {
-                                player.sendMessage(ChatHexa.translateColorCodes(prefix + Informations.getError("economy.pay.alphabet")));
+                                player.sendMessage(ChatHexa.translateColorCodes(prefix + alphabet));
                             }
                         }
                         } else{
@@ -105,7 +116,7 @@ public class CommandEconomy implements CommandExecutor {
 
 
                             } catch (Exception e) {
-                                throw new RuntimeException(e);
+                                throw new SqlErrorException("Erreur création Cheque");
                             }
                         } else {
                             player.sendMessage(ChatHexa.translateColorCodes(prefix + Informations.getError("economy.pay-under-0")));
@@ -131,10 +142,10 @@ public class CommandEconomy implements CommandExecutor {
 
 
                             } else {
-                                player.sendMessage(ChatHexa.translateColorCodes(prefix + Informations.getError("economy.pay.under-0")));
+                                player.sendMessage(ChatHexa.translateColorCodes(prefix + under0));
                             }
                         } else {
-                            player.sendMessage(ChatHexa.translateColorCodes(prefix + Informations.getError("economy.pay.alphabet")));
+                            player.sendMessage(ChatHexa.translateColorCodes(prefix + alphabet));
                         }
                     } else {
                         player.sendMessage(ChatHexa.translateColorCodes(prefix + basicError + errorPay));
@@ -159,10 +170,10 @@ public class CommandEconomy implements CommandExecutor {
 
 
                             } else {
-                                player.sendMessage(ChatHexa.translateColorCodes(prefix + Informations.getError("economy.pay.under-0")));
+                                player.sendMessage(ChatHexa.translateColorCodes(prefix + under0));
                             }
                         } else {
-                            player.sendMessage(ChatHexa.translateColorCodes(prefix + Informations.getError("economy.pay.alphabet")));
+                            player.sendMessage(ChatHexa.translateColorCodes(prefix + alphabet));
                         }
                     } else {
                         player.sendMessage(ChatHexa.translateColorCodes(prefix + basicError + errorPay));
@@ -179,23 +190,23 @@ public class CommandEconomy implements CommandExecutor {
     public static boolean moneyVerification(Player player,String monnaie, double somme){
         UUID uuid = player.getUniqueId();
 
-        if(monnaie.equalsIgnoreCase("MONEY")){
+        if(monnaie.equalsIgnoreCase(moneyName)){
             if(somme <= Informations.getPlayerMoney().get(uuid)){
-                player.sendMessage(ChatHexa.translateColorCodes(prefix + Informations.getError("economy.pay-not-enough")));
+                player.sendMessage(ChatHexa.translateColorCodes(prefix + notEnough));
                 return false;
             }
-        } else if (monnaie.equalsIgnoreCase("ANOTHERCOINS")){
+        } else if (monnaie.equalsIgnoreCase(anotherCoinsName)){
             if(somme <= Informations.getPlayerBMoney().get(uuid)){
-                player.sendMessage(ChatHexa.translateColorCodes(prefix + Informations.getError("economy.pay-not-enough")));
+                player.sendMessage(ChatHexa.translateColorCodes(prefix + notEnough));
                 return false;
             }
-        } else if (monnaie.equalsIgnoreCase("EVENTCOINS")) {
+        } else if (monnaie.equalsIgnoreCase(eventCoinsName)) {
             if(somme <= Informations.getPlayerEMoney().get(uuid)){
-                player.sendMessage(ChatHexa.translateColorCodes(prefix + Informations.getError("economy.pay-not-enough")));
+                player.sendMessage(ChatHexa.translateColorCodes(prefix + notEnough));
                 return false;
             }
         } else {
-            player.sendMessage(ChatHexa.translateColorCodes(prefix + Informations.getError("economy.pay.not-known-money")));
+            player.sendMessage(ChatHexa.translateColorCodes(prefix + notKnownMoney));
             return false;
         }
         return true;
@@ -215,7 +226,7 @@ public class CommandEconomy implements CommandExecutor {
         return true;
     }
 
-    public static boolean faireCheque (Player player,ItemStack cheque, String monnaie, double somme) throws Exception {
+    public static boolean faireCheque (Player player,ItemStack cheque, String monnaie, double somme) throws SqlErrorException {
 
         if(!moneyVerification(player,monnaie,somme)){
             return false;
@@ -223,13 +234,13 @@ public class CommandEconomy implements CommandExecutor {
 
         ItemMeta chequeMeta = cheque.getItemMeta();
         chequeMeta.setLore(Arrays.asList("","§eDescription : ","§f Cheque d'argent", "§f Monnaie : "+monnaie,"§f Somme : "+somme));
-        List lore = chequeMeta.getLore();
+        List<String> lore = chequeMeta.getLore();
         int id = DatabaseController.ajouterCheque(player.getUniqueId(),player.getName(),monnaie,somme);
         if (id >= 0) {
             lore.add("§f ID : " + id);
             Informations.removeMoney(player.getUniqueId(),somme,monnaie);
         } else {
-            throw new Exception("Erreur dans la liaison a la base de donnée");
+            throw new SqlErrorException("Erreur dans la liaison a la base de donnée");
         }
         chequeMeta.setLore(lore);
         cheque.setItemMeta(chequeMeta);
@@ -242,14 +253,14 @@ public class CommandEconomy implements CommandExecutor {
 
     public static boolean givePersonne (Player player, Player player2, String monnaie, double somme){
         String symbol = "";
-        if(monnaie.equalsIgnoreCase("MONEY")){
+        if(monnaie.equalsIgnoreCase(moneyName)){
             symbol = symbolMoney;
-        } else if (monnaie.equalsIgnoreCase("ANOTHERCOINS")){
+        } else if (monnaie.equalsIgnoreCase(anotherCoinsName)){
             symbol = symbolBMoney;
-        } else if (monnaie.equalsIgnoreCase("EVENTCOINS")) {
+        } else if (monnaie.equalsIgnoreCase(eventCoinsName)) {
             symbol = symbolEMoney;
         } else {
-            player.sendMessage(ChatHexa.translateColorCodes(prefix + Informations.getError("economy.pay.not-known-money")));
+            player.sendMessage(ChatHexa.translateColorCodes(prefix + notKnownMoney));
             return false;
         }
 
@@ -267,14 +278,14 @@ public class CommandEconomy implements CommandExecutor {
 
     public static boolean withdrawPersonne (Player player, Player player2, String monnaie, double somme){
         String symbol = "";
-        if(monnaie.equalsIgnoreCase("MONEY")){
+        if(monnaie.equalsIgnoreCase(moneyName)){
             symbol = symbolMoney;
-        } else if (monnaie.equalsIgnoreCase("ANOTHERCOINS")){
+        } else if (monnaie.equalsIgnoreCase(anotherCoinsName)){
             symbol = symbolBMoney;
-        } else if (monnaie.equalsIgnoreCase("EVENTCOINS")) {
+        } else if (monnaie.equalsIgnoreCase(eventCoinsName)) {
             symbol = symbolEMoney;
         } else {
-            player.sendMessage(ChatHexa.translateColorCodes(prefix + Informations.getError("economy.pay.not-known-money")));
+            player.sendMessage(ChatHexa.translateColorCodes(prefix + notKnownMoney));
             return false;
         }
 
