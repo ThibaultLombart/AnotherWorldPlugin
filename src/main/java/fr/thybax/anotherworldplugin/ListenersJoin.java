@@ -91,7 +91,7 @@ public class ListenersJoin implements Listener {
             Informations.getPlayerBMoney().put(uuid, ON_CONNECTION_BMONEY);
             Informations.getPlayerEMoney().put(uuid, ON_CONNECTION_EMONEY);
         } catch (SQLException e) {
-            throw new SqlErrorException("INSERT INTO player VALUES (?,?,?,?,?,?)");
+            throw new SqlErrorException(e.toString());
         }
     }
 

@@ -18,6 +18,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 public class ListenersEco implements Listener {
@@ -33,7 +34,7 @@ public class ListenersEco implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
 
-        if(event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR && Boolean.TRUE.equals(Items.equalsLocalizedName(item,Items.getCustomItem("cheque")))){
+        if((event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) && Boolean.TRUE.equals(Items.equalsLocalizedName(item,Items.getCustomItem("cheque")))){
                 event.setCancelled(true);
                 List<String> itemLore = item.getItemMeta().getLore();
                 int longueur = itemLore.size();
@@ -42,9 +43,11 @@ public class ListenersEco implements Listener {
                 int id = Integer.parseInt(subs3[3]);
 
 
+
                 final DbConnection databaseManager = main.getDatabaseManager().getDbConnection();
 
-                    try (final Connection connection = databaseManager.getConnection(); final PreparedStatement preparedStatement = connection.prepareStatement("SELECT used,pseudo FROM cheque WHERE ID = ?");final PreparedStatement preparedStatement2 = connection.prepareStatement("UPDATE CHEQUE SET used = 1 WHERE ID = ?")){
+                    try (final Connection connection = databaseManager.getConnection(); final PreparedStatement preparedStatement = connection.prepareStatement("SELECT used,nickname FROM cheque WHERE ID = ?");final PreparedStatement preparedStatement2 = connection.prepareStatement("UPDATE CHEQUE SET used = 1 WHERE ID = ?")){
+
 
                         preparedStatement.setInt(1, id);
                         final ResultSet resultSet = preparedStatement.executeQuery();
@@ -67,11 +70,14 @@ public class ListenersEco implements Listener {
                                 player.getInventory().removeItem(item);
                                 String pseudo = resultSet.getString(2);
 
+                                System.out.println(pseudo);
+
                                 player.getServer().getBanList(BanList.Type.NAME).addBan(player.getName(), "Duplication \n Si cela vous parait injustifié, veuillez nous contacter sur Discord", null, "Serveur");
                                 player.kickPlayer("Vous avez été ban pour : Duplication \n Si cela vous parait injustifié, veuillez nous contacter sur Discord");
                                 Logger.getLogger("Le joueur : " + player.getName() + " a été banni pour Duplication (Au niveau des Cheques)");
                                 player.getServer().getBanList(BanList.Type.NAME).addBan(pseudo, "Duplication \n Si cela vous parait injustifié, veuillez nous contacter sur Discord", null, "Serveur");
-                                if (Bukkit.getPlayer(pseudo).isOnline()){
+
+                                if (Bukkit.getPlayer(pseudo) != null){
                                     Bukkit.getPlayer(pseudo).kickPlayer("Vous avez été ban pour : Duplication \n Si cela vous parait injustifié, veuillez nous contacter sur Discord");
                                 }
                                 Logger.getLogger("Le joueur : " + pseudo + " a été banni pour Duplication (Au niveau des Cheques)");
@@ -79,7 +85,7 @@ public class ListenersEco implements Listener {
                         }
 
                     } catch (Exception e) {
-                        throw new SqlErrorException("Erreur lors du Cheque");
+                        throw new SqlErrorException(e + "---------- Erreur lors du Cheque");
                     }
 
         }

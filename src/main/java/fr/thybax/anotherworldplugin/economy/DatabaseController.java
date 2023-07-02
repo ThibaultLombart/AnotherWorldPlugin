@@ -23,7 +23,7 @@ public class DatabaseController {
     public static int ajouterCheque(UUID uuid,String pseudo, String typeMonnaie, double somme){
         if (typeMonnaie.equalsIgnoreCase("MONEY") || typeMonnaie.equalsIgnoreCase("ANOTHERCOINS") || typeMonnaie.equalsIgnoreCase("EVENTCOINS")) {
             final DbConnection databaseManager = mainItself.getDatabaseManager().getDbConnection();
-            try (Connection connection = databaseManager.getConnection();final PreparedStatement preparedStatement2 = connection.prepareStatement("INSERT INTO cheque(pseudo,uuid,type,somme,Created_at) VALUES (?,?,?,?,?)");final PreparedStatement preparedStatement = connection.prepareStatement("SELECT MAX(id) FROM cheque where Created_at = ?")){
+            try (Connection connection = databaseManager.getConnection();final PreparedStatement preparedStatement2 = connection.prepareStatement("INSERT INTO cheque(NICKNAME,uuid,type,somme,Created_at) VALUES (?,?,?,?,?)");final PreparedStatement preparedStatement = connection.prepareStatement("SELECT MAX(id) FROM cheque where Created_at = ?")){
 
                 final Timestamp time = new Timestamp(System.currentTimeMillis());
                 preparedStatement2.setString(1,pseudo);
@@ -32,6 +32,7 @@ public class DatabaseController {
                 preparedStatement2.setDouble(4,somme);
                 preparedStatement2.setTimestamp(5,time);
                 preparedStatement2.executeUpdate();
+
 
                 preparedStatement.setTimestamp(1,time);
                 final ResultSet resultSet = preparedStatement.executeQuery();
@@ -43,7 +44,7 @@ public class DatabaseController {
 
                 return id;
             } catch (SQLException e) {
-                throw new SqlErrorException("Add Cheque ERROR");
+                throw new SqlErrorException(e + " ----- Add Cheque ERROR");
             }
         }
         return -1;
@@ -63,7 +64,7 @@ public class DatabaseController {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new SqlErrorException("save "+uuid.toString()+" ERROR");
+            throw new SqlErrorException(e.toString());
         }
     }
 

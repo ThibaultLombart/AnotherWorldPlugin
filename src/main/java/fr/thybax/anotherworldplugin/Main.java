@@ -29,6 +29,7 @@ public final class Main extends JavaPlugin {
         DatabaseController.init(this);
         Items.init();
         ShopManager.init();
+
         getCommand("giveitem").setExecutor(new CommandItems());
         getCommand("giveitem").setTabCompleter(new TabCompletionGiveItem());
 

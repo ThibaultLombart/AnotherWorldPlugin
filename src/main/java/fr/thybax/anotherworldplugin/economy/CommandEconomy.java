@@ -191,17 +191,17 @@ public class CommandEconomy implements CommandExecutor {
         UUID uuid = player.getUniqueId();
 
         if(monnaie.equalsIgnoreCase(moneyName)){
-            if(somme <= Informations.getPlayerMoney().get(uuid)){
+            if(somme > Informations.getPlayerMoney().get(uuid)){
                 player.sendMessage(ChatHexa.translateColorCodes(prefix + notEnough));
                 return false;
             }
         } else if (monnaie.equalsIgnoreCase(anotherCoinsName)){
-            if(somme <= Informations.getPlayerBMoney().get(uuid)){
+            if(somme > Informations.getPlayerBMoney().get(uuid)){
                 player.sendMessage(ChatHexa.translateColorCodes(prefix + notEnough));
                 return false;
             }
         } else if (monnaie.equalsIgnoreCase(eventCoinsName)) {
-            if(somme <= Informations.getPlayerEMoney().get(uuid)){
+            if(somme > Informations.getPlayerEMoney().get(uuid)){
                 player.sendMessage(ChatHexa.translateColorCodes(prefix + notEnough));
                 return false;
             }
