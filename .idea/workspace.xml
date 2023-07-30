@@ -4,14 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a32f6be-c9d0-439c-bf85-ee42a9ed52e0" name="Changes" comment="- Mise en règle du Code&#10;- Amélioration Qualité Code">
+    <list default="true" id="3a32f6be-c9d0-439c-bf85-ee42a9ed52e0" name="Changes" comment="- Control de toutes les fonctionnalités&#10;- Création automatique des tables de la base de donnée (en renseignant les informations de la base de donnée dans le config.yml)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/auctionhouse/AuctionHouseManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/auctionhouse/CommandAuctionHouse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/auctionhouse/ItemsManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/auctionhouse/ListenersAuction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/e/1ee335c7df7ad0d1096ad2e4c4f05568bbf76964" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/8/280bb3eea9eac3c2fe3d94d0a3d67c75d09b6b45" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/9/5985830c669b9680c201aad7d0b4b98f29a209f7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/5/95174feda695bb627cca0270bef21a2e134d1bd8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/8/b835145633e626700b19055475ffa0d33152ea94" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/1/e/1ee335c7df7ad0d1096ad2e4c4f05568bbf76964" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/8/280bb3eea9eac3c2fe3d94d0a3d67c75d09b6b45" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/5/9/5985830c669b9680c201aad7d0b4b98f29a209f7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/5/95174feda695bb627cca0270bef21a2e134d1bd8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/b/8/b835145633e626700b19055475ffa0d33152ea94" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/ListenersJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/ListenersJoin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/database/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/database/DatabaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/CommandEconomy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/CommandEconomy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/DatabaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/DatabaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/ListenersEco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/thybax/anotherworldplugin/economy/ListenersEco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,25 +98,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/north/Documents/Java/AnotherWorldPlugin&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "last_opened_file_path": "C:/Users/north/Documents/Java/TeaModeration",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="fr.thybax.anotherworldplugin.auctionhouse" />
       <recent name="fr.thybax.anotherworldplugin" />
       <recent name="fr.thybax.anotherworldplugin.utils" />
       <recent name="fr.thybax.anotherworldplugin.economy" />
       <recent name="fr.thybax.anotherworldplugin.trade" />
-      <recent name="fr.thybax.anotherworldplugin.items" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.AnotherWorldPlugin [build]">
+  <component name="RunManager" selected="Gradle.AnotherWorldPlugin [assemble]">
     <configuration name="AnotherWorldPlugin [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -157,8 +169,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.AnotherWorldPlugin [build]" />
         <item itemvalue="Gradle.AnotherWorldPlugin [assemble]" />
+        <item itemvalue="Gradle.AnotherWorldPlugin [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -199,7 +211,21 @@
       <option name="project" value="LOCAL" />
       <updated>1683230416366</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="- Control de toutes les fonctionnalités&#10;- Création automatique des tables de la base de donnée (en renseignant les informations de la base de donnée dans le config.yml)">
+      <created>1688327833664</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1688327833664</updated>
+    </task>
+    <task id="LOCAL-00006" summary="- Control de toutes les fonctionnalités&#10;- Création automatique des tables de la base de donnée (en renseignant les informations de la base de donnée dans le config.yml)">
+      <created>1688327867548</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1688327867548</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -207,7 +233,8 @@
     <MESSAGE value="-Correction de bugs&#10;-Ajout du Début du Shop&#10;-Optimisation des programmes" />
     <MESSAGE value="-Optimisation relation Plugin/Base de donnée" />
     <MESSAGE value="- Mise en règle du Code&#10;- Amélioration Qualité Code" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Mise en règle du Code&#10;- Amélioration Qualité Code" />
+    <MESSAGE value="- Control de toutes les fonctionnalités&#10;- Création automatique des tables de la base de donnée (en renseignant les informations de la base de donnée dans le config.yml)" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Control de toutes les fonctionnalités&#10;- Création automatique des tables de la base de donnée (en renseignant les informations de la base de donnée dans le config.yml)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

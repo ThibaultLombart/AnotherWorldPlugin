@@ -41,3 +41,8 @@ commands:
 
   shop:
     description: Permet d'ouvrir le /shop
+
+  auctionhouse:
+    description: Permet d'ouvrir l'hotel des ventes
+    permission: auctionhouse.use
+    aliases: ah
